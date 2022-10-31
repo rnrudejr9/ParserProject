@@ -6,7 +6,9 @@
 * IDE : IntelliJ 2022.02.03
 * DataBase : MYSQL
 * Language : Java 11 + SpringBoot
+* csv : 전국병원정보.csv
 
+csv파일 한글깨짐 현상 해결 : https://koopi.tistory.com/14 
 
 ---
 
