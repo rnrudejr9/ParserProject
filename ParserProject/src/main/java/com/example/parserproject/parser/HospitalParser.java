@@ -33,7 +33,6 @@ public class HospitalParser implements Parser<Hospital> {
         hospital.setTotalNumberOfBeds(Integer.parseInt(row[31]));
         hospital.setTotalAreaSize(Float.parseFloat(row[32]));
 
-        return new Hospital();
-
+        return hospital;
     }
 }
