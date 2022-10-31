@@ -6,3 +6,28 @@
 * IDE : IntelliJ 2022.02.03
 * DataBase : MYSQL
 * Language : Java 11 + SpringBoot
+
+
+---
+
+DataBase
+
+|no|제목|내용|설명|
+|---|---|---|---|
+|1|id(pk)|Int|번호|
+|2|open_service_name|VARCHAR(10)|개방서비스명|
+|3|open_local_government_code|int|개방자치단체코드|
+|4|management_number(unique)|varchar(40)|관리번호|
+|5|license_date|datetime|인허가일자|
+|6|business_status|tinyint(2)|영업상태|
+|7|business_status_code|tinyint(2)|영업상태코드|
+|8|phone|varchar(20)|소재지전화|
+|9|full_address|VARCHAR(200)|소재지전체주소|
+|10|road_name_address|VARCHAR(200)|도로명전체주소|
+|11|hospital_name|VARCHAR(20)|사업장명(병원이름)|
+|12|business_type_name|VARCHAR(10)|업태구분명|
+|13|healthcare_provider_count|tinyint(2)|의료인수|
+|14|patient_room_count|tinyint(2)|입원실수|
+|15|total_number_of_beds|tinyint(2)|병상수|
+|16|total_area_size|float|총면적|
+
