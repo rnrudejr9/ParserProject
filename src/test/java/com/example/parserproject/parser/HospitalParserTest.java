@@ -15,6 +15,8 @@ import org.springframework.test.context.ContextConfiguration;
 import java.io.IOException;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 @SpringBootTest
 class HospitalParserTest {
@@ -57,7 +59,7 @@ class HospitalParserTest {
     }
 
     @Test
-    @DisplayName("Delete")
+    @DisplayName("DeleteAll")
     void deleteAll(){
         hospitalDao.deleteAll();
     }
@@ -65,7 +67,8 @@ class HospitalParserTest {
     @Test
     @DisplayName("findById")
     void findById(){
-        hospitalDao.findById("1");
+        Hospital p = hospitalDao.findById("2");
+        assertEquals(p.getId(),2);
     }
 
     @Test

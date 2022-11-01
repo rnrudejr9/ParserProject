@@ -36,6 +36,22 @@ public class HospitalDao {
 
     public Hospital findById(String id){
         Hospital p = jdbcTemplate.queryForObject("select * from nation_wide_hospitals where id = ?",(rs,count)->new Hospital(
+                Integer.parseInt(rs.getString(1)),
+                rs.getString(2),
+                Integer.parseInt(rs.getString(3)),
+                rs.getString(4),
+                null, // 5번
+                Integer.parseInt(rs.getString(6)),
+                Integer.parseInt(rs.getString(7)),
+                rs.getString(8),
+                rs.getString(9),
+                rs.getString(10),
+                rs.getString(11),
+                rs.getString(12),
+                Integer.parseInt(rs.getString(13)),
+                Integer.parseInt(rs.getString(14)),
+                Integer.parseInt(rs.getString(15)),
+                Float.parseFloat(rs.getString(16))
         ),id);
         return p;
     }
