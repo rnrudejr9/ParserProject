@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ReadLineContext <T>{
     private Parser<T> parser;
-
+    private boolean isContinue = true;
     public ReadLineContext(Parser<T> parser) {
         this.parser = parser;
     }
@@ -18,7 +18,9 @@ public class ReadLineContext <T>{
         List<T> result = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(filename));
         String str;
-        reader.readLine();
+        if(isContinue) {
+            reader.readLine();
+        }
         while((str = reader.readLine() ) != null){
             try {
                 result.add(parser.parse(str));
