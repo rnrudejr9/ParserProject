@@ -40,7 +40,7 @@ public class HospitalDao {
                 rs.getString(2),
                 Integer.parseInt(rs.getString(3)),
                 rs.getString(4),
-                null, // 5번
+                rs.getTimestamp("license_date").toLocalDateTime(),// 5번
                 Integer.parseInt(rs.getString(6)),
                 Integer.parseInt(rs.getString(7)),
                 rs.getString(8),

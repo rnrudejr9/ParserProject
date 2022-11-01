@@ -33,14 +33,11 @@ class HospitalParserTest {
 
     @Test
     @DisplayName("csv 10만개 이상 파일읽기 및 파싱 테스트")
-    void oneHundredThousandRead() throws IOException {
+    List<Hospital> oneHundredThousandRead() throws IOException {
         String filename = "nation_wide_hospital.csv";
         List<Hospital> hospitalList = hospitalReadLineContext.readByLine(filename);
 
-        for(int i =0 ; i<10;i++){
-            System.out.println(hospitalList.get(i).getHospitalName());
-        }
-        System.out.println("파싱된 데이터 개수 : " + hospitalList.size());
+        return hospitalList;
     }
 
     @Test
@@ -54,8 +51,12 @@ class HospitalParserTest {
 
     @Test
     @DisplayName("Add")
-    void Add(){
-        hospitalDao.add(convertTOHospital());
+    void Add() throws IOException {
+        hospitalDao.deleteAll();
+        List<Hospital> list = oneHundredThousandRead();
+        for(Hospital p : list){
+            hospitalDao.add(p);
+        }
     }
 
     @Test
@@ -67,8 +68,8 @@ class HospitalParserTest {
     @Test
     @DisplayName("findById")
     void findById(){
-        Hospital p = hospitalDao.findById("2");
-        assertEquals(p.getId(),2);
+        Hospital p = hospitalDao.findById("5015");
+        System.out.println(p.getHospitalName());
     }
 
     @Test
