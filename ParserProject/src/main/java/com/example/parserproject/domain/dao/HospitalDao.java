@@ -4,6 +4,8 @@ import com.example.parserproject.domain.Hospital;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class HospitalDao {
     private final JdbcTemplate jdbcTemplate;
@@ -24,6 +26,11 @@ public class HospitalDao {
         ,hospital.getHealthcareProviderCount(),hospital.getPatientRoomCount(),hospital.getTotalNumberOfBeds(),hospital.getTotalAreaSize());
     }
     public void deleteAll(){
-        jdbcTemplate.update("delete from nation_wide_hospitals ()");
+        jdbcTemplate.update("delete from nation_wide_hospitals");
+    }
+    public Hospital findById(String id){
+        Hospital p = jdbcTemplate.queryForObject("select * from nation_wide_hospitals where id = ?",(rs,count)->new Hospital(
+        ),id);
+        return p;
     }
 }

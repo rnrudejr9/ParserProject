@@ -45,4 +45,16 @@ class HospitalParserTest {
         hospitalDao.add(convertTOHospital());
     }
 
+    @Test
+    @DisplayName("Delete")
+    void deleteAll(){
+        hospitalDao.deleteAll();
+    }
+
+    @Test
+    @DisplayName("findById")
+    void findById(){
+        hospitalDao.findById("1");
+    }
+
 }
