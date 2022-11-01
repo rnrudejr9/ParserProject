@@ -1,22 +1,33 @@
 package com.example.parserproject.parser;
 
 import com.example.parserproject.domain.Hospital;
+import com.example.parserproject.domain.dao.DaoFactory;
 import com.example.parserproject.domain.dao.HospitalDao;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mapstruct.Context;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
 
 import java.io.IOException;
 import java.util.List;
 
+
 @SpringBootTest
 class HospitalParserTest {
+    HospitalDao hospitalDao;
     @Autowired
     ReadLineContext<Hospital> hospitalReadLineContext;
 
     @Autowired
-    HospitalDao hospitalDao;
+    ApplicationContext context;
+    @BeforeEach
+    void setUp() {
+        this.hospitalDao = context.getBean("hospitalDao", HospitalDao.class);
+    }
 
     @Test
     @DisplayName("csv 10만개 이상 파일읽기 및 파싱 테스트")

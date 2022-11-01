@@ -1,12 +1,17 @@
 package com.example.parserproject.domain.dao;
 
 import com.example.parserproject.domain.Hospital;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import java.sql.ResultSet;
 import java.util.List;
 
-@Component
+//스프링부트어플리케이션 어노테이션이 component 달려있는 어노테이션을 다 빈으로 등록함
+
+
+
 public class HospitalDao {
     private final JdbcTemplate jdbcTemplate;
 
@@ -28,6 +33,7 @@ public class HospitalDao {
     public void deleteAll(){
         jdbcTemplate.update("delete from nation_wide_hospitals");
     }
+
     public Hospital findById(String id){
         Hospital p = jdbcTemplate.queryForObject("select * from nation_wide_hospitals where id = ?",(rs,count)->new Hospital(
         ),id);
