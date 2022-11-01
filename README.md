@@ -11,6 +11,13 @@
 csv파일 한글깨짐 현상 해결 : https://koopi.tistory.com/14 
 
 ---
+* Architecture
+
+![image](https://user-images.githubusercontent.com/49141751/199157313-d69d9d27-377e-4694-ae1d-c6e0198eb559.png)
+
+![image](https://user-images.githubusercontent.com/49141751/199157383-5dc2622f-37be-4499-bbe1-23ad7e4e1b27.png)
+
+---
 
 DataBase
 
