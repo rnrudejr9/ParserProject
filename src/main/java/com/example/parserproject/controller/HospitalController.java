@@ -21,7 +21,7 @@ public class HospitalController {
         this.hospitalDao = hospitalDao;
     }
 
-    @RequestMapping("/getall")
+    @GetMapping("/getall")
     public List<Hospital> getHospital(){
         return hospitalDao.findAll();
     }
@@ -29,21 +29,11 @@ public class HospitalController {
     @GetMapping("/get/{id}")
     public String get(@PathVariable Integer id) {
         Hospital hospital = hospitalDao.findById(id);
-        Optional<Hospital> opt = Optional.of(hospital);
-        String status=null;
-        if (!opt.isEmpty()) {
-            return "EMPTY";
-        } else {
-            Hospital p = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Hospital()).getBody();
-            if(p.getBusinessStatusCode() == 13){
-                status = "영업";
-            }
-            return "ID : " + p.getId() +" 이름 : "+ p.getHospitalName() + " 상태 : " + status;
-        }
+        return hospital.getHospitalName();
     }
 
 
-    @RequestMapping("/isfail")
+    @GetMapping("/isfail")
     public List<Hospital> isFailed(){
         return hospitalDao.findByFail();
     }
