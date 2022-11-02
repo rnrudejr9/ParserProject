@@ -8,3 +8,6 @@ spring:
     url: jdbc:mysql://localhost:3306/likelion-db
     username: root
     password: 12345
+
+server:
+  port: 8080
