@@ -68,8 +68,7 @@ class HospitalParserTest {
     @Test
     @DisplayName("findById")
     void findById(){
-        Hospital p = hospitalDao.findById("5015");
-        System.out.println(p.getHospitalName());
+        hospitalDao.findById("123");
     }
 
     @Test

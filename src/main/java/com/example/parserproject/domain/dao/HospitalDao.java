@@ -3,9 +3,11 @@ package com.example.parserproject.domain.dao;
 import com.example.parserproject.domain.Hospital;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 //스프링부트어플리케이션 어노테이션이 component 달려있는 어노테이션을 다 빈으로 등록함
@@ -34,27 +36,41 @@ public class HospitalDao {
         jdbcTemplate.update("delete from nation_wide_hospitals");
     }
 
+    RowMapper<Hospital> rowMapper = (rs, rowNum) -> {
+        Hospital hospital = new Hospital();
+        hospital.setId(Integer.parseInt(rs.getString(1)));
+        hospital.setOpenServiceName(rs.getString(2));
+        hospital.setOpenLocalGovernmentCode(Integer.parseInt(rs.getString(3)));
+        hospital.setManagementNumber(rs.getString(4));
+        hospital.setLicenseDate(rs.getTimestamp("license_date").toLocalDateTime());
+        hospital.setBusinessStatus(Integer.parseInt(rs.getString(6)));
+        hospital.setBusinessStatusCode(Integer.parseInt(rs.getString(7)));
+        hospital.setPhone(rs.getString(8));
+        hospital.setFullAddress(rs.getString(9));
+        hospital.setRoadNameAddress(rs.getString(10));
+        hospital.setHospitalName(rs.getString(11));
+        hospital.setBusinessTypeName(rs.getString(12));
+        hospital.setHealthcareProviderCount(Integer.parseInt(rs.getString(13)));
+        hospital.setPatientRoomCount(Integer.parseInt(rs.getString(14)));
+        hospital.setTotalNumberOfBeds(Integer.parseInt(rs.getString(15)));
+        hospital.setTotalAreaSize(Float.parseFloat(rs.getString(16)));
+        return hospital;
+    };
+
     public Hospital findById(String id){
-        Hospital p = jdbcTemplate.queryForObject("select * from nation_wide_hospitals where id = ?",(rs,count)->new Hospital(
-                Integer.parseInt(rs.getString(1)),
-                rs.getString(2),
-                Integer.parseInt(rs.getString(3)),
-                rs.getString(4),
-                rs.getTimestamp("license_date").toLocalDateTime(),// 5번
-                Integer.parseInt(rs.getString(6)),
-                Integer.parseInt(rs.getString(7)),
-                rs.getString(8),
-                rs.getString(9),
-                rs.getString(10),
-                rs.getString(11),
-                rs.getString(12),
-                Integer.parseInt(rs.getString(13)),
-                Integer.parseInt(rs.getString(14)),
-                Integer.parseInt(rs.getString(15)),
-                Float.parseFloat(rs.getString(16))
-        ),id);
+        Hospital p = jdbcTemplate.queryForObject("select * from nation_wide_hospitals where id = ?",rowMapper,id);
         return p;
     }
+    public List<Hospital> findByRoadName(String roadNameAddress){
+        List<Hospital> list = new ArrayList<>();
+        list.add(jdbcTemplate.queryForObject("select * from nation_wide_hospitals where road_name_address regexp ?",rowMapper,roadNameAddress));
+        return list;
+    }
+    public List<Hospital> findAll(){
+        return jdbcTemplate.query("select * from nation_wide_hospitals",rowMapper);
+    }
+
+
     public int getCount(){
             String sql = "select count(id) from nation_wide_hospitals;";
             return this.jdbcTemplate.queryForObject(sql, Integer.class);
