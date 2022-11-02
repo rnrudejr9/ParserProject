@@ -26,14 +26,19 @@ public class HospitalController {
         return hospitalDao.findAll();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Hospital> get(@PathVariable Integer id) {
+    @GetMapping("/get/{id}")
+    public String get(@PathVariable Integer id) {
         Hospital hospital = hospitalDao.findById(id);
         Optional<Hospital> opt = Optional.of(hospital);
+        String status=null;
         if (!opt.isEmpty()) {
-            return ResponseEntity.ok().body(hospital);
+            return "EMPTY";
         } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Hospital());
+            Hospital p = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Hospital()).getBody();
+            if(p.getBusinessStatusCode() == 13){
+                status = "영업";
+            }
+            return "ID : " + p.getId() +" 이름 : "+ p.getHospitalName() + " 상태 : " + status;
         }
     }
 
