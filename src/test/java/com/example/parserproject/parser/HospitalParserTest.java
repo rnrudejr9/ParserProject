@@ -66,15 +66,10 @@ class HospitalParserTest {
     }
 
     @Test
-    @DisplayName("findById")
-    void findById(){
-        hospitalDao.findById("123");
-    }
-
-    @Test
     @DisplayName("GetCount")
     void getCount(){
         System.out.println(hospitalDao.getCount());
     }
+
 
 }

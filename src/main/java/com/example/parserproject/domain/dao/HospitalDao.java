@@ -35,7 +35,6 @@ public class HospitalDao {
     public void deleteAll(){
         jdbcTemplate.update("delete from nation_wide_hospitals");
     }
-
     RowMapper<Hospital> rowMapper = (rs, rowNum) -> {
         Hospital hospital = new Hospital();
         hospital.setId(Integer.parseInt(rs.getString(1)));
@@ -57,7 +56,7 @@ public class HospitalDao {
         return hospital;
     };
 
-    public Hospital findById(String id){
+    public Hospital findById(int id){
         Hospital p = jdbcTemplate.queryForObject("select * from nation_wide_hospitals where id = ?",rowMapper,id);
         return p;
     }
@@ -70,6 +69,9 @@ public class HospitalDao {
         return jdbcTemplate.query("select * from nation_wide_hospitals",rowMapper);
     }
 
+    public List<Hospital> findByFail(){
+        return jdbcTemplate.query("select * from nation_wide_hospitals where business_status_code = ? limit 50",rowMapper,13);
+    }
 
     public int getCount(){
             String sql = "select count(id) from nation_wide_hospitals;";
