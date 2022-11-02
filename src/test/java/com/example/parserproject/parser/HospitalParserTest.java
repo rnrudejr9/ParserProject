@@ -36,15 +36,20 @@ class HospitalParserTest {
         this.hospitalDao = context.getBean("hospitalDao", HospitalDao.class);
     }
 
-    @Test
-    @DisplayName("csv 10만개 이상 파일읽기 및 파싱 테스트")
-    void oneHundredThousandRead() throws IOException {
-        hospitalDao.deleteAll();
-        String filename = "nation_wide_hospital.csv";
-        int cnt = this.hospitalService.insertLargeVolumeHospitalData(filename);
-        assertTrue(cnt > 100_000);
-        System.out.println("파싱된 데이터 개수" +  cnt);
-    }
+//    @Test
+//    @DisplayName("csv 10만개 이상 파일읽기 및 파싱 테스트")
+//    void oneHundredThousandRead() throws IOException {
+//        hospitalDao.deleteAll();
+//        String filename = "nation_wide_hospital.csv";
+//        int cnt = this.hospitalService.insertLargeVolumeHospitalData(filename);
+//        assertTrue(cnt > 100_000);
+//        System.out.println("파싱된 데이터 개수" +  cnt);
+//    }
+//    @Test
+//    @DisplayName("DeleteAll")
+//    void deleteAll(){
+//        hospitalDao.deleteAll();
+//    }
 
     @Test
     @DisplayName("csv 1줄을 parser 만드는지 테스트")
@@ -55,11 +60,7 @@ class HospitalParserTest {
         return hospital;
     }
 
-    @Test
-    @DisplayName("DeleteAll")
-    void deleteAll(){
-        hospitalDao.deleteAll();
-    }
+
 
     @Test
     @DisplayName("GetCount")
