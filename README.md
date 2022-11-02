@@ -4,7 +4,7 @@
 ---
 
 * IDE : IntelliJ 2022.02.03
-* DataBase : MYSQL
+* DataBase : MYSQL + aws ec2
 * Language : Java 11 + SpringBoot
 * csv : 전국병원정보.csv
 
