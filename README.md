@@ -40,3 +40,10 @@ DataBase
 |15|total_number_of_beds|tinyint(2)|병상수|
 |16|total_area_size|float|총면적|
 
+
+![image](https://user-images.githubusercontent.com/49141751/209741337-49e7fe52-abb9-4c40-b6d1-525c3ab4d152.png)
+![image](https://user-images.githubusercontent.com/49141751/209741359-80f5d3c0-01cc-4f61-a895-d2985c343ebe.png)
+
+
+
+
